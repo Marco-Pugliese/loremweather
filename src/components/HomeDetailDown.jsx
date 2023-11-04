@@ -9,23 +9,6 @@ const HomeDetailDown = (props) => {
   const [longitude, setLongitude] = useState("12.4829321");
   const [weather, setWeather] = useState("");
 
-  const checkDailyWeather = () => {
-    fetch(
-      `api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=14&appid=${apiKey}`
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error("Error while getting daily-weather-infos");
-        }
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => console.log("Error : ", err));
-  };
-
   const myFetch = () => {
     fetch(
       `http://api.openweathermap.org/geo/1.0/direct?q=${props.city}&appid=${apiKey}`
@@ -40,10 +23,26 @@ const HomeDetailDown = (props) => {
       .then((datas) => {
         setLatitude(datas[0].lat);
         setLongitude(datas[0].lon);
-        checkDailyWeather();
+        fetch(
+          `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly&appid=${apiKey}`
+        )
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("Error while getting weather-fetch-info");
+            }
+          })
+          .then((risp) => {
+            setWeather(risp);
+          })
+          .catch((err) => {
+            console.log("Error: ", err);
+          });
       })
       .catch((err) => console.log("Error: ", err));
   };
+
   useEffect(() => {
     myFetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,7 +51,7 @@ const HomeDetailDown = (props) => {
   return (
     <>
       <Container>
-        <SingleDayCard />
+        <SingleDayCard data={weather} />
       </Container>
     </>
   );
