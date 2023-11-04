@@ -23,16 +23,35 @@ body {
 .date {
   color: indianred;
 }
-
+#weather {
+  color: indianred;
+}
+#btn {
+  background-color: indianred;
+  border: 1px solid black;
+  margin-left: 1px;
+  transition: all 0.4s;
+}
+#btn:hover {
+  background-color: white;
+  color: indianred;
+  cursor: pointer;
+}
 .smaller {
   font-size: 0.7em;
+}
+.extra-small {
+  font-size: 0.5em;
+}
+.text-purple {
+  color: indianred;
 }
 .text-footer {
   color: gainsboro;
 }
 #firstCloud {
   transition: all 0.5s;
-  color: blueviolet;
+  color: indianred;
 }
 #firstCloud:hover {
   transition: all 0.8s;
@@ -54,12 +73,10 @@ body {
 
   text-shadow: black 1px 0 10px;
   font-weight: lighter;
-  /* font-weight: 400;  */
-  /* font-weight: 500; */
-  /* font-weight: 600; */
-  /* font-weight: 700;  */
 }
-
+.bg-2 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 /* ----------------------------------------------------------- */
 /* ----------------------ANIMATIONS--------------------------- */
 /* ----------------------------------------------------------- */

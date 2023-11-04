@@ -1,25 +1,18 @@
-import { Col, Container, Form, Row } from "react-bootstrap";
-import HomeDetail from "./HomeDetail";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "./LandingPage";
+import DetailPage from "./DetailPage";
 
 const MyBody = () => {
   return (
-    <Container className=" w-50 text-center d-flex align-items-center justify-content-center rounded h-100">
-      <Row
-        className=" text-focus-in display-4 text-white fw-bold align-items-center w-100"
-        id="title"
-      >
-        <Col md={6}>
-          <Form.Control
-            className="bg-transparent shadow border border-black"
-            placeholder="choose a city"
-            id="inputField"
-          />
-        </Col>
-        <Col md={6}>
-          <HomeDetail className="bg" />
-        </Col>
-      </Row>
-    </Container>
+    <BrowserRouter>
+      <Routes>
+        <Route>
+          <Route element={<LandingPage />} path="/" />
+          <Route element={<DetailPage />} path="/:city" />
+        </Route>
+      </Routes>
+      ;
+    </BrowserRouter>
   );
 };
 export default MyBody;
