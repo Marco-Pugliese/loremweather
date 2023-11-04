@@ -11,36 +11,19 @@ const HomeDetailDown = (props) => {
 
   const myFetch = () => {
     fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${props.city}&appid=${apiKey}`
+      `http://api.openweathermap.org/data/2.5/weather?q=${props.city}&units=metric&lang=it&appid=${apiKey}`
     )
       .then((res) => {
         if (res.ok) {
           return res.json();
         } else {
-          throw new Error("Error while getting the fetch-datas");
+          throw new Error("Error while gettind the datas");
         }
       })
-      .then((datas) => {
-        setLatitude(datas[0].lat);
-        setLongitude(datas[0].lon);
-        fetch(
-          `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly&appid=${apiKey}`
-        )
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            } else {
-              throw new Error("Error while getting weather-fetch-info");
-            }
-          })
-          .then((risp) => {
-            setWeather(risp);
-          })
-          .catch((err) => {
-            console.log("Error: ", err);
-          });
+      .then((data) => {
+        setWeather(data);
       })
-      .catch((err) => console.log("Error: ", err));
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -50,9 +33,7 @@ const HomeDetailDown = (props) => {
 
   return (
     <>
-      <Container>
-        <SingleDayCard data={weather} />
-      </Container>
+      <Container>weather</Container>
     </>
   );
 };
