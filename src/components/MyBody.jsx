@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./LandingPage";
-import DetailPage from "./DetailPage";
 
 const MyBody = () => {
   return (
@@ -8,7 +7,7 @@ const MyBody = () => {
       <Routes>
         <Route>
           <Route element={<LandingPage />} path="/" />
-          <Route element={<DetailPage />} path="/:city" />
+          {/* DetailPage to be Added */}
         </Route>
       </Routes>
       ;

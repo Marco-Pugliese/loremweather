@@ -1,17 +1,28 @@
-import { Button, Card } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Row } from "react-bootstrap";
+import CityWeather from "./CityWeather";
+import CityName from "./CityName";
+import Weather3h5dCarousel from "./Weather3h5dCarousel";
 
 const SingleDayCard = (props) => {
+  const [weather, setWeather] = useState(null);
+  useEffect(() => {
+    setWeather(props.weather);
+  }, [props.weather]);
   return (
-    <Card>
-      <Card.Body>
-        {props.data.name}
-        <Card.Text className="smaller d-flex justify-content-between">
-          <div>Min : {Math.round(props.data.main.temp_min)}</div>
-          <div>Max : {Math.round(props.data.main.temp_min)}</div>
-        </Card.Text>
-        <Button variant="primary">Check Today's Weather</Button>
-      </Card.Body>
-    </Card>
+    <>
+      <Row className="justify-content-center">
+        {weather && (
+          <div className="mainContent ">
+            <div>
+              <CityName city={props} />
+              <CityWeather today={props.today} />
+            </div>
+            <Weather3h5dCarousel weather={props.weather} />
+          </div>
+        )}
+      </Row>
+    </>
   );
 };
 export default SingleDayCard;

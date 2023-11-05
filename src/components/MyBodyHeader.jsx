@@ -1,9 +1,11 @@
 const MyBodyHeader = () => {
   return (
-    <div className="fs-4 d-flex mt-2 justify-content-center align-items-center">
-      Check the
-      <span className="ms-2 text-purple">LoremWeather </span>
-      <span className="extra-small ms-1"> ipsum dolor sit amet</span>
+    <div className="fs-4 d-flex mt-2 justify-content-center border-bottom border-black py-2">
+      <div className="fw-light">Check the</div>
+      <div className="mx-2 date ">LoremWeather </div>
+      <div className="smaller fw-light">
+        <div className="smaller">ipsum dolor sit amet</div>
+      </div>
     </div>
   );
 };
